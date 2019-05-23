@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import useInput from "./hooks/input";
-const Input = ({ addTodo }) => {
+import { TodosContext } from "./context/TodoContext";
+const Input = () => {
   const [value, handleChange, reset] = useInput("");
-  // console.log(value);
+  const { addTodo } = useContext(TodosContext);
   return (
     <div className="input-group mb-3">
       <div className="input-group-prepend">

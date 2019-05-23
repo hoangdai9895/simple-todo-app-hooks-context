@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import useInput from "./hooks/input";
-const TodoItem = ({ id, task, deleteTodo, editTodo }) => {
+import { TodosContext } from "./context/TodoContext";
+
+const TodoItem = ({ id, task }) => {
   const [value, handleChange] = useInput("");
   const [isEdit, setIsEdit] = useState(false);
-  // console.log(deleteTodo, editTodo);
+  console.log(task);
   // toglle edit form
+  const { deleteTodo, editTodo } = useContext(TodosContext);
+
   const toggle = () => {
     setIsEdit(!isEdit);
   };

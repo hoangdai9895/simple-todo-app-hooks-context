@@ -1,18 +1,13 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import { TodosContext } from "./context/TodoContext";
 import TodoItem from "./TodoItem";
-const List = ({ todos, deleteTodo, editTodo }) => {
-  // console.log(todos);
+const List = () => {
+  const { todos } = useContext(TodosContext);
   if (todos.length) {
     return (
       <ul className="list-group">
         {todos.map(todo => (
-          <TodoItem
-            {...todo}
-            deleteTodo={deleteTodo}
-            key={todo.id}
-            editTodo={editTodo}
-          />
+          <TodoItem {...todo} key={todo.id} />
         ))}
       </ul>
     );

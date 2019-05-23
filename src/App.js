@@ -1,17 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import Input from "./Input";
 import List from "./List";
 
+import { TodosProvider } from "./context/TodoContext";
 import useTodo from "./hooks/todo";
 
 function App() {
-  const initialTodos = JSON.parse(window.localStorage.getItem("todos") || "[]");
+  // const initialTodos = JSON.parse(window.localStorage.getItem("todos") || "[]");
 
-  const { todos, addTodo, deleteTodo, editTodo } = useTodo(initialTodos);
+  // const { todos } = useTodo(initialTodos);
 
-  useEffect(() => {
-    window.localStorage.setItem("todos", JSON.stringify(todos));
-  });
+  // useEffect(() => {
+  //   window.localStorage.setItem("todos", JSON.stringify(todos));
+  // });
 
   return (
     <div className="App container mt-2">
@@ -20,9 +21,10 @@ function App() {
         <p className="lead">Simple todo app using react hooks !!!!</p>
         <hr className="my-2" />
       </div>
-      {/* input */}
-      <Input addTodo={addTodo} />
-      <List todos={todos} deleteTodo={deleteTodo} editTodo={editTodo} />
+      <TodosProvider>
+        <Input />
+        <List />
+      </TodosProvider>
     </div>
   );
 }
